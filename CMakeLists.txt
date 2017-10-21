@@ -49,11 +49,11 @@ else()
 endif()
 
 #find_package(HinnantDate REQUIRED)
-set(DATE_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/deps/sqlpp11/deps/date/include" CACHE FILEPATH "Path to Howard Hinnant's date library")
+set(DATE_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../sqlpp11/deps/date/include" CACHE FILEPATH "Path to Howard Hinnant's date library")
 
 message(STATUS "Using ${CMAKE_CXX_COMPILER} (compiler id: ${CMAKE_CXX_COMPILER_ID})")
 
-set(SQLPP11_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/deps/sqlpp11/include" CACHE FILEPATH "Path to sqlpp11 includes")
+set(SQLPP11_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../sqlpp11/include" CACHE FILEPATH "Path to sqlpp11 includes")
 
 if(NOT EXISTS ${SQLPP11_INCLUDE_DIR}/sqlpp11/sqlpp11.h)
 	message(SEND_ERROR "Can't find file sqlpp11/sqlpp11.h")

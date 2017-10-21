@@ -36,21 +36,21 @@ namespace sqlpp
   {
     struct connection_config
     {
-      connection_config() : path_to_database(), flags(0), vfs(), debug(false), password("")
+      connection_config() : path_to_database(), flags(0), vfs(), debug(false), password(""), busy_timeout_ms(0)
       {
       }
       connection_config(const connection_config&) = default;
       connection_config(connection_config&&) = default;
 
-      connection_config(std::string path, int fl = 0, std::string vf = "", bool dbg = false, std::string password = "")
-          : path_to_database(std::move(path)), flags(fl), vfs(std::move(vf)), debug(dbg), password(password)
+      connection_config(std::string path, int fl = 0, std::string vf = "", bool dbg = false, std::string password = "", int bt = 0)
+          : path_to_database(std::move(path)), flags(fl), vfs(std::move(vf)), debug(dbg), password(password), busy_timeout_ms(bt)
       {
       }
 
       bool operator==(const connection_config& other) const
       {
         return (other.path_to_database == path_to_database && other.flags == flags && other.vfs == vfs &&
-                other.debug == debug && other.password == password);
+                other.debug == debug && other.password == password && other.busy_timeout_ms == busy_timeout_ms);
       }
 
       bool operator!=(const connection_config& other) const
@@ -63,6 +63,7 @@ namespace sqlpp
       std::string vfs;
       bool debug;
       std::string password;
+      int busy_timeout_ms;
     };
   }
 }

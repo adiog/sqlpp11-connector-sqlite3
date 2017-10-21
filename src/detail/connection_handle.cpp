@@ -58,10 +58,21 @@ namespace sqlpp
           sqlite3_close(sqlite);
           throw sqlpp::exception("Sqlite3 error: Can't open database: " + msg);
         }
+
+        if (conf.busy_timeout_ms > 0)
+        {
+            rc = sqlite3_busy_timeout(sqlite, conf.busy_timeout_ms);
+            if (rc != SQLITE_OK)
+            {
+                const std::string msg = sqlite3_errmsg(sqlite);
+                sqlite3_close(sqlite);
+                throw sqlpp::exception("Sqlite3 error: Can't set busy timeout: " + msg);
+            }
+        }
 #ifdef SQLITE_HAS_CODEC
         if (conf.password.size()>0)
         {
-          int ret = sqlite3_key(sqlite, conf.password.data(),conf.password.size());
+          int ret = sqlite3_key(sqlite, conf.password.data(), conf.password.size());
           if (ret!=SQLITE_OK)
           {
             const std::string msg = sqlite3_errmsg(sqlite);

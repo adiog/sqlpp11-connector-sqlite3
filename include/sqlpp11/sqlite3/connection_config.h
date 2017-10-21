@@ -27,8 +27,8 @@
 #ifndef SQLPP_SQLITE3_CONNECTION_CONFIG_H
 #define SQLPP_SQLITE3_CONNECTION_CONFIG_H
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace sqlpp
 {
@@ -36,28 +36,27 @@ namespace sqlpp
   {
     struct connection_config
     {
-      connection_config() : path_to_database(), flags(0), vfs(), debug(false),password("")
+      connection_config() : path_to_database(), flags(0), vfs(), debug(false), password("")
       {
       }
       connection_config(const connection_config&) = default;
       connection_config(connection_config&&) = default;
 
-      connection_config(std::string path, int fl = 0, std::string vf = "", bool dbg = false,std::string password="")
-          : path_to_database(std::move(path)), flags(fl), vfs(std::move(vf)), debug(dbg),password(password)
+      connection_config(std::string path, int fl = 0, std::string vf = "", bool dbg = false, std::string password = "")
+          : path_to_database(std::move(path)), flags(fl), vfs(std::move(vf)), debug(dbg), password(password)
       {
       }
 
       bool operator==(const connection_config& other) const
       {
         return (other.path_to_database == path_to_database && other.flags == flags && other.vfs == vfs &&
-                other.debug == debug && other.password==password);
+                other.debug == debug && other.password == password);
       }
 
       bool operator!=(const connection_config& other) const
       {
         return !operator==(other);
       }
-
 
       std::string path_to_database;
       int flags;

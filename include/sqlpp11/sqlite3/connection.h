@@ -325,6 +325,7 @@ namespace sqlpp
 
       auto attach(const connection_config&, const std::string name) -> schema_t;
 
+      connection_backend getRTTI() const override { return connection_backend::SQLITE3; };
     };
 
     inline std::string serializer_t::escape(std::string arg)

@@ -48,11 +48,12 @@ else()
 	find_package(Sqlite3 REQUIRED)
 endif()
 
-find_package(HinnantDate REQUIRED)
+#find_package(HinnantDate REQUIRED)
+set(DATE_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/deps/sqlpp11/deps/date/include" CACHE FILEPATH "Path to Howard Hinnant's date library")
 
 message(STATUS "Using ${CMAKE_CXX_COMPILER} (compiler id: ${CMAKE_CXX_COMPILER_ID})")
 
-set(SQLPP11_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../sqlpp11/include" CACHE FILEPATH "Path to sqlpp11 includes")
+set(SQLPP11_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/deps/sqlpp11/include" CACHE FILEPATH "Path to sqlpp11 includes")
 
 if(NOT EXISTS ${SQLPP11_INCLUDE_DIR}/sqlpp11/sqlpp11.h)
 	message(SEND_ERROR "Can't find file sqlpp11/sqlpp11.h")
@@ -67,7 +68,7 @@ else()
 endif()
 
 include_directories("${SQLPP11_INCLUDE_DIR}")
-include_directories("${HinnantDate_INCLUDE_DIR}")
+include_directories("${DATE_INCLUDE_DIR}")
 include_directories("${SQLITE3_INCLUDE_DIRS}")
 set(include_dir "${PROJECT_SOURCE_DIR}/include")
 file(GLOB_RECURSE sqlpp_headers ${include_dir}/*.h ${SQLPP11_INCLUDE_DIR}/*.h)

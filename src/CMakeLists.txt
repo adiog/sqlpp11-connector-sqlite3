@@ -5,7 +5,7 @@ add_library(sqlpp11-connector-sqlite3
 		detail/connection_handle.cpp
       )
 
-add_library(sqlpp11-connector-sqlite3-dynamic
+add_library(sqlpp11-connector-sqlite3-dynamic SHARED
                 connection.cpp
                 bind_result.cpp
                 prepared_statement.cpp
